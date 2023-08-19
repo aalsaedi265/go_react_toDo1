@@ -6,3 +6,6 @@ Install Fiber v2 = > will put depence in the mod and make go.sum
 go get -u github.com/gofiber/fiber/v2
 
 npx create-react-app client --template typescript
+
+clien
+npm install @mantine/hooks @mantine/core swr @primer/octicons-react
