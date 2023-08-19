@@ -1,0 +1,8 @@
+
+inilize back end, can be anything i chose to put where it will be on GH
+     go mod init github.com/aalsaedi265/go_react_toDo1 
+
+Install Fiber v2 = > will put depence in the mod and make go.sum
+go get -u github.com/gofiber/fiber/v2
+
+npx create-react-app client --template typescript
