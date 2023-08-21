@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@mantine/core'
 import useSWR from 'swr'
+import AddToDos from './components/AddToDos';
 import './App.css';
 
 export const ENDPOINT = 'http://localhost:4000'
