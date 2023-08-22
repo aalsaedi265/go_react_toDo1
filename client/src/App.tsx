@@ -1,8 +1,16 @@
 import React from 'react';
-import { Box } from '@mantine/core'
+import { Box, List, ThemeIcon } from '@mantine/core'
+import { CheckCircleFillIcon } from "@primer/octicons-react";
 import useSWR from 'swr'
 import AddToDos from './components/AddToDos';
 import './App.css';
+
+export interface Todo {
+  id: number
+  title: string
+  body: string
+  done: boolean
+}
 
 export const ENDPOINT = 'http://localhost:4000'
 const fetcher = (url: string) =>
@@ -10,10 +18,35 @@ const fetcher = (url: string) =>
     .then(res => res.json())
 function App() {
 
-  const {data, mutate} = useSWR('api/todos', fetcher)
+  const {data, mutate} = useSWR<Todo[]>('api/todos', fetcher)
   return (
-    <Box>
-      {JSON.stringify(data)}
+    <Box
+      sx={(theme) => ({
+        padding: "2rem",
+        width: '100%',
+        maxWidth: '40rem',
+        margin: '0 auto'
+    })}
+    >
+
+      <List spacing ="xs" size = "sm" mb={12} center>
+      
+        {data?.map((todo) => {
+          return (<List.Item
+            key={`todo__${todo.id}`}
+            icon={todo.done ? (
+              <ThemeIcon color="teal" size={24} radius="xl">
+                <CheckCircleFillIcon size={20} />
+            </ThemeIcon>
+            ) : (
+                
+            )  }
+          > 
+            {todo.id}
+          </List.Item>)
+        })}
+      </List>
+      <AddToDos mutate ={mutate} />
     </Box>
   );
 }
